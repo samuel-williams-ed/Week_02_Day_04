@@ -2,15 +2,35 @@ import unittest
 from src.football_results import *
 
 class FootballResultsTest(unittest.TestCase):
-    pass
-    # Test we get the right result string for a final score dictionary representing -
+    # if __name__ == "__main__":
+    #     unittest.main()
 
-        # Home win
-        # Away win
-        # Draw
+    def setUp(self):
+        self.test_list_of_scores = [{    
+        "home_score": 2,
+        "away_score": 2},
+        {    
+        "home_score": 4,
+        "away_score": 3}
+        ,{    
+        "home_score": 0,
+        "away_score": 1}
+        ]
+        
+        self.dictionary_draw = {    
+        "home_score": 2,
+        "away_score": 2}
+        self.dictionary_home_win = {    
+        "home_score": 4,
+        "away_score": 3}
+        self.dictionary_away_win = {    
+        "home_score": 0,
+        "away_score": 1}
 
-    # Test we get right list of result strings for a list of final score dictionaries. 
-
-
-if __name__ == "__main__":
-    unittest.main()
+    def test_get_result(self):
+        self.assertEqual("Draw", get_result(self.dictionary_draw))
+        self.assertEqual("Away win", get_result(self.dictionary_away_win))
+        self.assertEqual("Home win", get_result(self.dictionary_home_win))
+    
+    def test_get_results(self):
+        self.assertEqual(["Draw", "Home win", "Away win"], get_results(self.test_list_of_scores))
